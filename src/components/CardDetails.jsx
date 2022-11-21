@@ -16,6 +16,10 @@ const CardDetails = ({ inputValue, setInputValue, cartItem, setCartItem }) => {
     handlePrice();
   });
 
+  const handleRemove = (id) => {
+    const arr = cartItem.filter((item) => item.id !== id);
+    setCartItem(arr);
+  };
   const thankyouPageHandler = () => {
     setLastPage(false);
   };
@@ -47,7 +51,10 @@ const CardDetails = ({ inputValue, setInputValue, cartItem, setCartItem }) => {
                 <div key={index}>
                   <div className="mt-6 ml-[-10px] flex  justify-evenly w-[60vw] text-gray-700">
                     <div className="flex gap-4">
-                      <IoIosClose className="w-[24px] h-[24px]" />
+                      <IoIosClose
+                        onClick={() => handleRemove(items.id)}
+                        className="w-[24px] h-[24px] cursor-pointer"
+                      />
                       <img className="w-[80px]" src={items.image} alt="" />
                       <p>{items.name}</p>
                     </div>
